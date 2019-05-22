@@ -15,7 +15,7 @@
       "metadata": {
         "description": "The name of the Administrator of the new VMs and Domain"
       },
-      "defaultValue": "localadmin"
+      "defaultValue": "vmadmin"
     },
     "adminPassword": {
       "type": "securestring",
@@ -50,7 +50,7 @@
       "metadata": {
         "description": "The FQDN of the AD Domain created"
       },
-      "defaultValue": "fabrikam.local"
+      "defaultValue": "sqlcluster.local"
     },
     "dnsSuffix": {
       "type": "string",
@@ -153,7 +153,7 @@
       "metadata": {
         "description": "The SQL Server Version"
       },
-      "defaultValue": "SQL2016SP2-WS2016"
+      "defaultValue": "SQL2016SP1-WS2016"
     },
     "sqlServerSku": {
       "type": "string",
@@ -391,20 +391,16 @@
     "dcStorageAccountName": "[concat(substring(concat(parameters('sqlStorageAccountName'), uniqueString(parameters('sqlStorageAccountName'))),0,18),'dc')]",
     "configuration": {
       "vnetwithDNSTemplateURL": "[concat(parameters('_artifactsLocation'),'/vnet-with-dns-server.json')]",
-      "rdpIPAdressSetupURL": "[concat(parameters('_artifactsLocation'),'/publicip-rdp.json')]",
       "setupLBsUrl": "[concat(parameters('_artifactsLocation'), '/setupLBs-e.json')]",
       "creatingADNICUrl": "[concat(parameters('_artifactsLocation'),'/creatingADNIC.json')]",
       "creatingNicsUrl": "[concat(parameters('_artifactsLocation'),'/creatingNICS.json')]",
       "storageAccountVirtualNetworkPublicIP": "[concat(parameters('_artifactsLocation'),'/storageAccountVirtualNetworkPublicIP.json')]",
-      "provisioningADVM": "[concat(parameters('_artifactsLocation'),'/provisioningADVM','.json')]",
+      "provisioningADVM": "[concat(parameters('_artifactsLocation'),'/provisioningADVM.json')]",
       "provisioningSQLVMs": "[concat(parameters('_artifactsLocation'),'/provisioningSQLVMs.json')]",
-      "configuringBackupADVM": "[concat(parameters('_artifactsLocation'),'/configuringBackupADVM.json')]",
       "preparingAlwaysOnSqlServer": "[concat(parameters('_artifactsLocation'),'/preparingSqlServer.json')]",
       "configuringAlwaysOn": "[concat(parameters('_artifactsLocation'),'/configuringAlwaysOn.json')]",
       "adPDCModulesURL": "[concat(parameters('_artifactsLocation'),'/CreateADPDC.ps1.zip')]",
       "adPDCConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-      "adBDCModulesURL": "[concat(parameters('_artifactsLocation'),'/CreateADBDC.ps1.zip')]",
-      "adBDCConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC",
       "fswModulesURL": "[concat(parameters('_artifactsLocation'),'/CreateFileShareWitness.ps1.zip')]",
       "fswConfigurationFunction": "CreateFileShareWitness.ps1\\CreateFileShareWitness",
       "sqlAOPrepareModulesURL": "[concat(parameters('_artifactsLocation'),'/PrepareAlwaysOnSqlServer.ps1.zip')]",
